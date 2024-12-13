@@ -99,10 +99,14 @@ class MenuView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
                 activity.view.ScrStatus.visibility = View.VISIBLE
             }
             else{
+                activity.arCoreSessionHelper.onResume(activity)
                 activity.lifecycle.addObserver(activity.arCoreSessionHelper)
+
                 activity.lifecycle.addObserver(activity.renderer)
                 activity.lifecycle.addObserver(activity.view)
                 activity.setContentView(activity.view.root)
+                //activity.finish()
+                //activity.recreate()
             }
         }
 

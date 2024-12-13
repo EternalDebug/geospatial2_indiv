@@ -53,6 +53,10 @@ import kotlinx.coroutines.launch
 
 const val SHARED_PREFS = "shared_prefs"
 const val list = "shared_list"
+const val isTank = "shared_tank"
+const val radAnc = "radius_anchor"
+const val radDel = "radius_deletion"
+
 data class PosData(var lat:Double, var long:Double, var alt:Double)
 
 var AncList = mutableListOf<Anchor>()

@@ -65,6 +65,10 @@ class HelloGeoActivity : AppCompatActivity() {
     // getting the data which is stored in shared preferences.
     sharedpreferences = getSharedPreferences(SHARED_PREFS, Context.MODE_PRIVATE)
 
+    VN = sharedpreferences.getInt(radDel, 8).toDouble()
+    MaxDist = sharedpreferences.getInt(radAnc, 80).toDouble()
+    ModelFlag = sharedpreferences.getBoolean(isTank, false)
+
     val json = sharedpreferences.getString(list, null)
     if (json != null){
       // below line is to get the type of our array list.

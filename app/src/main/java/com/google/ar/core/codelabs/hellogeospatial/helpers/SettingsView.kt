@@ -19,6 +19,9 @@ import com.google.ar.core.codelabs.hellogeospatial.MaxDist
 import com.google.ar.core.codelabs.hellogeospatial.ModelFlag
 import com.google.ar.core.codelabs.hellogeospatial.R
 import com.google.ar.core.codelabs.hellogeospatial.VN
+import com.google.ar.core.codelabs.hellogeospatial.isTank
+import com.google.ar.core.codelabs.hellogeospatial.radAnc
+import com.google.ar.core.codelabs.hellogeospatial.radDel
 import com.google.ar.core.codelabs.hellogeospatial.sharedpreferences
 import com.google.ar.core.examples.java.common.helpers.SnackbarHelper
 
@@ -37,7 +40,11 @@ class SettingsView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
+
         activity.runOnUiThread {
+            MaxDist = sharedpreferences.getInt(radAnc, 80).toDouble()
+            VN = sharedpreferences.getInt(radDel, 8).toDouble()
+            ModelFlag = sharedpreferences.getBoolean(isTank, false)
             maxDistET.setText(MaxDist.toString())
             delRadET.setText(VN.toString())
 
@@ -57,9 +64,14 @@ class SettingsView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
     }
 
     fun ApplyVals(){
-        sharedpreferences
+        val editor = sharedpreferences.edit()
         MaxDist = maxDistET.text.toString().toDouble()
         VN = delRadET.text.toString().toDouble()
         ModelFlag = CBIsTank.isChecked
+
+        editor.putInt(radAnc, MaxDist.toInt())
+        editor.putInt(radDel, VN.toInt())
+        editor.putBoolean(isTank,ModelFlag)
+        editor.apply()
     }
 }

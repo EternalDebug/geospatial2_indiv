@@ -121,6 +121,7 @@ class HelloGeoView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
             activity.lifecycle.addObserver(activity.menuView)
             activity.lifecycle.removeObserver(activity.view)
             activity.lifecycle.removeObserver(activity.renderer)
+            activity.arCoreSessionHelper.onPause(activity)
             activity.lifecycle.removeObserver(activity.arCoreSessionHelper)
             activity.setContentView(activity.menuView.root)
         }
