@@ -14,11 +14,13 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.ar.core.Earth
 import com.google.ar.core.GeospatialPose
+import com.google.ar.core.codelabs.hellogeospatial.AlwaysDo
 import com.google.ar.core.codelabs.hellogeospatial.HelloGeoActivity
 import com.google.ar.core.codelabs.hellogeospatial.MaxDist
 import com.google.ar.core.codelabs.hellogeospatial.ModelFlag
 import com.google.ar.core.codelabs.hellogeospatial.R
 import com.google.ar.core.codelabs.hellogeospatial.VN
+import com.google.ar.core.codelabs.hellogeospatial.alwdo
 import com.google.ar.core.codelabs.hellogeospatial.isTank
 import com.google.ar.core.codelabs.hellogeospatial.radAnc
 import com.google.ar.core.codelabs.hellogeospatial.radDel
@@ -32,6 +34,7 @@ class SettingsView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
     val maxDistET = root.findViewById<EditText>(R.id.ETRadiusAnc)
     val delRadET = root.findViewById<EditText>(R.id.ETRadiusDel)
     val CBIsTank = root.findViewById<CheckBox>(R.id.checkBoxIsTank)
+    val CBADO = root.findViewById<CheckBox>(R.id.checkBoxCanAct)
 
     val toMenu = root.findViewById<Button>(R.id.setToMenu)
     val applyBtn = root.findViewById<Button>(R.id.buttonApply)
@@ -45,10 +48,13 @@ class SettingsView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
             MaxDist = sharedpreferences.getInt(radAnc, 80).toDouble()
             VN = sharedpreferences.getInt(radDel, 8).toDouble()
             ModelFlag = sharedpreferences.getBoolean(isTank, false)
+            AlwaysDo = sharedpreferences.getBoolean(alwdo, false)
+
             maxDistET.setText(MaxDist.toString())
             delRadET.setText(VN.toString())
 
             CBIsTank.isChecked = ModelFlag
+            CBADO.isChecked = AlwaysDo
         }
 
         toMenu.setOnClickListener {
@@ -68,10 +74,12 @@ class SettingsView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
         MaxDist = maxDistET.text.toString().toDouble()
         VN = delRadET.text.toString().toDouble()
         ModelFlag = CBIsTank.isChecked
+        AlwaysDo = CBADO.isChecked
 
         editor.putInt(radAnc, MaxDist.toInt())
         editor.putInt(radDel, VN.toInt())
         editor.putBoolean(isTank,ModelFlag)
+        editor.putBoolean(alwdo, AlwaysDo)
         editor.apply()
     }
 }

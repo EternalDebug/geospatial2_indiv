@@ -47,6 +47,7 @@ lateinit var PosDataList: MutableList<PosData>
 var VN = 8.0
 var MaxDist = 80.0
 var ModelFlag = true
+var AlwaysDo = false
 
 class HelloGeoActivity : AppCompatActivity() {
   companion object {
@@ -68,6 +69,7 @@ class HelloGeoActivity : AppCompatActivity() {
     VN = sharedpreferences.getInt(radDel, 8).toDouble()
     MaxDist = sharedpreferences.getInt(radAnc, 80).toDouble()
     ModelFlag = sharedpreferences.getBoolean(isTank, false)
+    AlwaysDo = sharedpreferences.getBoolean(alwdo, false)
 
     val json = sharedpreferences.getString(list, null)
     if (json != null){

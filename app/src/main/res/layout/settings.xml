@@ -87,6 +87,25 @@
         android:layout_height="53dp"
         android:background="?android:attr/listDivider" />
 
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:text="Всегда есть кнопка DO:"
+        android:textSize="20sp" />
+
+    <CheckBox
+        android:id="@+id/checkBoxCanAct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Да?" />
+
+    <View
+        android:id="@+id/divider5"
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:background="?android:attr/listDivider" />
+
     <Button
         android:id="@+id/setToMenu"
         android:layout_width="match_parent"

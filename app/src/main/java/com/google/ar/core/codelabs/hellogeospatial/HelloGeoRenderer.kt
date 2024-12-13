@@ -56,6 +56,7 @@ const val list = "shared_list"
 const val isTank = "shared_tank"
 const val radAnc = "radius_anchor"
 const val radDel = "radius_deletion"
+const val alwdo = "always_do"
 
 data class PosData(var lat:Double, var long:Double, var alt:Double)
 
@@ -380,7 +381,10 @@ class HelloGeoRenderer(val activity: HelloGeoActivity) :
           if (!isAnchorVisible(it, earth)){
             activity.runOnUiThread{
               activity.view.txt.visibility = View.VISIBLE
-              activity.view.buttonAct.visibility = View.INVISIBLE
+              if (!AlwaysDo)
+                activity.view.buttonAct.visibility = View.INVISIBLE
+              else
+                activity.view.buttonAct.visibility = View.VISIBLE
             }
           }
           else{
