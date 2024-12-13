@@ -35,8 +35,14 @@ import com.google.ar.core.codelabs.hellogeospatial.act
 import com.google.ar.core.examples.java.common.helpers.SnackbarHelper
 
 /** Contains UI elements for Hello Geo. */
+
+var fi = true
+
 class HelloGeoView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
-  val root = View.inflate(activity, R.layout.activity_main, null)
+    //lateinit var root:
+  val root = View.inflate(activity, R.layout.activity_main, null)//GetRoot()
+
+
   val surfaceView = root.findViewById<GLSurfaceView>(R.id.surfaceview)
 
   val button4_clicker = root.findViewById<Button>(R.id.button4)
@@ -83,6 +89,16 @@ class HelloGeoView(val activity: HelloGeoActivity) : DefaultLifecycleObserver {
                                                      poseText)
     }
   }
+
+    fun GetRoot(): View{
+        if (fi)
+        {
+            fi = false
+            return View.inflate(activity, R.layout.activity_main, null)
+        }
+        else
+            return activity.view.root
+    }
 
   override fun onResume(owner: LifecycleOwner) {
       try {

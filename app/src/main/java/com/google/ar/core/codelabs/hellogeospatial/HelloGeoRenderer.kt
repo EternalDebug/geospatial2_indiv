@@ -290,7 +290,13 @@ class HelloGeoRenderer(val activity: HelloGeoActivity) :
     // camera framerate.
     val frame =
       try {
-        session.update()
+        try {
+          session.update()
+        }
+        catch (e: Exception){
+          Log.e("SHIT", "Something went wrong... again", e)
+          return
+        }
       } catch (e: CameraNotAvailableException) {
         Log.e(TAG, "Camera not available during onDrawFrame", e)
         showError("Camera not available. Try restarting the app.")
